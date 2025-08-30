@@ -1,0 +1,86 @@
+---
+site_name: Pat's Bytes
+site_description: Father, geek, and tinkerer in tech
+site_url: https://www.patsbytes.net
+site_author: Pat
+
+# Repository (update with your GitHub repo)
+repo_url: https://github.com/ravenawk/patsbytes
+repo_name: GitHub
+
+# Theme configuration
+theme:
+  name: material
+  palette:
+    # Light mode
+    - scheme: default
+      primary: blue grey
+      accent: deep orange
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    # Dark mode
+    - scheme: slate
+      primary: blue grey
+      accent: deep orange
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  icon:
+    repo: fontawesome/brands/git-alt
+  features:
+    - navigation.tags
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.footer
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      use_pygments: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.details        # Collapsible sections
+  - admonition              # Note/Warning/Tip boxes
+  - pymdownx.snippets       # Include external files
+  - attr_list               # Add CSS classes
+  - md_in_html              # HTML in Markdown
+  - tables                  # Better tables
+  - meta                  # Better tables
+  - toc:
+      permalink: true       # Permalinks to headings
+
+plugins:
+  - search
+  - tags:
+      tags_file: tags.md
+  - meta
+  - blog:
+      authors: true
+      blog_toc: true
+      post_url_format: "{slug}"
+      post_excerpt: required
+      post_excerpt_separator: <!-- more -->
+      archive: true
+      archive_name: Archives
+      categories: true
+      categories_toc: true
+      categories_name: Categories
+nav:
+  - Welcome: index.md
+  - Blog: 
+    - blog/index.md
+  - Categories: all-categories.md
+  - Tags: tags.md
+  - Archives: all-archives.md
+  - About: about.md
+  - Contact: contact.md
+  - Disclaimer: disclaimer.md

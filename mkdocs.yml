@@ -11,8 +11,8 @@ repo_name: GitHub
 # Theme configuration
 theme:
   name: material
-  logo: assets/icons/pats_bytes_icon.svg
-  favicon: assets/icons/pats_bytes_favicon.svg
+  logo: assets/icons/pb_icon.svg
+  favicon: assets/icons/pb_icon.svg
   palette:
     # Light mode
     - scheme: default

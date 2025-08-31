@@ -1,0 +1,13 @@
+/* Optional: Adjust the logo container for better spacing */
+.md-header__button.md-logo {
+  padding: 6px 12px;
+  margin: 2px;
+}
+
+/* Ensure logo doesn't get cut off on smaller screens */
+@media screen and (max-width: 768px) {
+  .md-header__button.md-logo img,
+  .md-header__button.md-logo svg {
+    max-height: 2.5rem;
+  }
+}

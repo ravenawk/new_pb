@@ -2,7 +2,7 @@
 
 Hey there!
 
-I'm Pat - father, geek, and perpetual tinkerer working in tech. This site is where I document what I learn, share solutions to problems I've encountered, and occasionally save future-me from having to figure something out twice. Most of my experiments happen in my homelab, where I break things, fix them, and sometimes even improve them.
+I'm Pat - Husband, Father, and perpetual tinkerer working in tech. This site is where I document what I learn, share solutions to problems I've encountered, and occasionally save future-me from having to figure something out twice. Most of my experiments happen in my homelab, where I break things, fix them, and sometimes even improve them.
 
 ## What I Do
 

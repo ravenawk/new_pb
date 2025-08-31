@@ -11,6 +11,8 @@ repo_name: GitHub
 # Theme configuration
 theme:
   name: material
+  logo: assets/icons/pats_bytes_icon.svg
+  favicon: assets/icons/pats_bytes_favicon.svg
   palette:
     # Light mode
     - scheme: default
@@ -76,7 +78,7 @@ plugins:
       categories_name: Categories
 nav:
   - Welcome: index.md
-  - Blog: 
+  - Blog:
     - blog/index.md
   - Categories: all-categories.md
   - Tags: tags.md

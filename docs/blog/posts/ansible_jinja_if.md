@@ -1,5 +1,5 @@
 ---
-date: 
+date:
   created: 2023-12-28
   updated: 2025-08-30
 categories:

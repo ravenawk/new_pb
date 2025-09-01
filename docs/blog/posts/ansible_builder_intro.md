@@ -5,31 +5,40 @@ date:
 authors:
   - pat
 categories:
-  - Tools
+  - Tutorial
 tags:
   - ansible
 ---
-# Ansible-Builder: A tool for creating Execution Environments
+# Getting Started with Ansible Builder: Creating Custom Execution Environments
 
 An execution environment in Ansible refers to a container image that includes all the necessary dependencies, modules, and plugins to execute Ansible automation.
 This ensures consistent and reproducible execution of playbooks and roles by providing an environment with set configurations. 
 
-By creating custom execution environments using ansible-builder, you can create reproducible environments tailored to the work you need to do.
-Ansible-builder simplifies dependency management by ensuring consistent, predictable outcomes.
-
-Let's use ansible-builder to create an execution environment and verify that it is working as expected.
+By creating custom execution environments using Ansible Builder, you can create reproducible environments tailored to the work you need to do.
+Ansible Builder simplifies dependency management by ensuring consistent, predictable outcomes.
 
 <!-- more -->
 
-You must have either Podman or Docker installed on the system where you intend to install Ansible-builder. Once you have Podman or Docker, the next step is installing Ansible-builder. One method for installation is using pip, the Python package manager. Pip correctly installs dependencies and simplifies the installation process.
+Let's use Ansible Builder to build an execution environment for managing Proxmox servers. Proxmox VE is an open-source virtualization platform similar to VMware vSphere.
 
-The basic command to install Ansible-builder with pip is by running the following:
+!!! note "Prerequisites"
+    You must have the following installed on your system:
+
+    - Either Podman or Docker
+    - Python
+
+We will install Ansible Builder using pip, the Python package manager. We'll install it in a Python virtual environment to isolate the installation and prevent potential conflicts with system packages. (You can alternatively install it from Red Hat repositories if you have a Red Hat subscription.)
+
+
+Create and activate a virtual environment:
+```bash
+python3 -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 `pip install ansible-builder`
+``` 
 
-You will see dependency packages installed in addition to ansible-builder. You can use other options with pip, such as using a Python virtual environment or installing it with the --user flag. Look at the documentation for pip to see what options are available.
-
-Let’s build an execution environment that we can use to control a Proxmox server. Proxmox VE is an open-source server for managing virtual environments, similar to VMware vSphere. You can use various files when building your execution environment, but the main file is execution-environment.yml.
+While you can include various files in your execution environment build, the core file is execution-environment.yml.
 
 ```yaml title="execution-environment.yml"
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Creating a RHEL Template with Packer on Proxmox"
 date:
-    created: 2023-09-29
+    created: 2023-09-30
 authors:
     - pat
 ---

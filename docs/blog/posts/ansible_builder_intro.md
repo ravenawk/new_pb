@@ -1,7 +1,7 @@
 ---
 date: 
-  created: 2023-06-06T00:00:00
-  updated: 2025-08-26T00:00:00
+  created: 2023-06-30
+  updated: 2025-08-26
 authors:
   - pat
 categories:
@@ -82,9 +82,12 @@ dependencies:
   python: requirements.txt
 --snip--
 ```
-I have included an empty ansible.cfg here to show how you include it in your image build. Feel free to put any options in your ansible.cfg that you use in your execution environment. Our execution-environment.yml will put this ansible.cfg in the container image where we specify. We will look more at this later on.
+I have included an empty ansible.cfg here to show how you include it in your image build. 
+Feel free to put any options in your ansible.cfg that you use in your execution environment. 
+Our execution-environment.yml will put this ansible.cfg in the container image where we specify. 
+We will look more at this later on.
 
-Once you have all of your files set, you can run:
+Once we have all of the files set, we can run:
 
 `ansible-builder build`
 
@@ -95,6 +98,7 @@ Running command:
   podman build -f context/Containerfile -t ansible-execution-env:latest context
 Complete! The build context can be found at: /home/pmartin/ansible-builder/context
 ```
+
 After the build process finishes you should have the image available to use.
 
 ```bash

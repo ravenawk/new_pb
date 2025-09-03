@@ -5,7 +5,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: your-runner-label
+    runs-on: linux
     steps:
     - uses: actions/checkout@v3
 

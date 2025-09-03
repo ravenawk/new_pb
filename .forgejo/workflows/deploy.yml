@@ -1,0 +1,19 @@
+name: Deploy MkDocs
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: your-runner-label
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Stop existing container
+      run: podman stop mkdocs-site || true && podman rm mkdocs-site || true
+
+    - name: Build new image
+      run: podman build -t mkdocs-site .
+
+    - name: Run new container
+      run: podman run -d --name mkdocs-site -p 8080:80 mkdocs-site

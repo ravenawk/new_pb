@@ -8,6 +8,6 @@ COPY . .
 RUN mkdocs build
 
 # Serve the static files
-FROM nginx:alpine
+FROM docker.io/library/nginx:alpine
 COPY --from=0 /app/site /usr/share/nginx/html
 EXPOSE 80

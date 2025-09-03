@@ -82,6 +82,7 @@ dependencies:
   python: requirements.txt
 --snip--
 ```
+
 I have included an empty ansible.cfg here to show how you include it in your image build. 
 Feel free to put any options in your ansible.cfg that you use in your execution environment. 
 Our execution-environment.yml will put this ansible.cfg in the container image where we specify. 
@@ -232,7 +233,7 @@ context
 
 The ones of note are the two requirement files, they contain what you expect, Python module and collection module lists. We see our ansible.cfg has been copied into the _build directory and a Containerfile that handles the actual creation of the image. I will leave it to you to explore and inspect what items are added.
 
-Ansible-builder is a tool for creating your own execution environments. By leveraging Ansible-builder's capabilities to bundle dependencies, modules, and plugins, organizations can ensure consistent and reliable execution of their automation workflows. This article touched on just the tip of things you can do with ansible-builder, be sure to check out the documentation to see more options.
+Ansible-builder is a tool for creating your own execution environments. By leveraging Ansible-builder's capabilities to bundle dependencies, modules, and plugins, you can ensure consistent and reliable execution of your automation workflows. This article touched on just the tip of things you can do with ansible-builder, be sure to check out the documentation to see more options.
 
 ### References and further reading:
 

@@ -9,6 +9,7 @@ categories:
 tags:
   - ansible
 ---
+# Ansible Navigator: Beginner's Guide
 The shift from Ansible Tower to the Ansible Automation Platform (AAP) represents a significant evolution in development, notably through the adoption of containerized job execution. Amidst these changes is Ansible Navigator, a new utility that consolidates multiple Ansible tools into one. This first article is just an introduction to Ansible Navigator; additional articles that explain different parts and usage will follow.
 
 <!-- more -->

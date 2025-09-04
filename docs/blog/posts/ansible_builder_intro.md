@@ -26,8 +26,9 @@ Let's use Ansible Builder to build an execution environment for managing Proxmox
 
     - Either Podman or Docker
     - Python
+    - pip
 
-We will install Ansible Builder using pip, the Python package manager. We'll install it in a Python virtual environment to isolate the installation and prevent potential conflicts with system packages. (You can alternatively install it from Red Hat repositories if you have a Red Hat subscription.)
+We will install using `pip`, the Python package manager. We'll install it in a Python virtual environment to isolate the installation and prevent potential conflicts with system packages. (You can alternatively install it from Red Hat repositories if you have a Red Hat subscription.)
 
 
 Create and activate a virtual environment:
@@ -38,7 +39,7 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 `pip install ansible-builder`
 ``` 
 
-While you can include various files in your execution environment build, the core file is execution-environment.yml.
+While you can include various files in your execution environment build, the core file is `execution-environment.yml`.
 
 ```yaml title="execution-environment.yml"
 ---
@@ -76,7 +77,9 @@ options:
   package_manager_path: /usr/bin/dnf
 ```
 
-The above execution-environment.yml has all the Ansible, Python, and system requirements in line. You can also specify them as separate files, such as requirements.yml (Ansible) and requirements.txt (Python).
+The above `execution-environment.yml` has all the Ansible, Python, and system requirements in line. 
+You can also specify them as separate files, such as `requirements.yml` (Ansible) and `requirements.txt` (Python).
+
 
 ```yaml title="Using seperate files"
 --snip--
@@ -91,24 +94,30 @@ dependencies:
 --snip--
 ```
 
-I have included an empty ansible.cfg here to show how you include it in your image build. 
-Feel free to put any options in your ansible.cfg that you use in your execution environment. 
-Our execution-environment.yml will put this ansible.cfg in the container image where we specify. 
+
+!!! note "Requirements"
+    When building an execution environment, the final image requires both Ansible Core and Ansible Runner - this can be pre-installed in the base image or added during the build process, as shown above.
+
+I have included an empty `ansible.cfg` here to show how you include it in your image build. 
+Feel free to put any options in this file that you want to use in your execution environment. 
+Our `execution-environment.yml` will put this in the container image where we specify. 
 We will look more at this later on.
 
 !!! note "Possible gotchas"
-    When I first wrote this article, the build process didn’t require any additional RPMs, and I had to call out microdnf as the package manager explicitly (it handles some RPM installs even if you don’t request extra packages). In the current version, the build looks for microdnf by default, but awx-ee now includes dnf. Because of this, I had to adjust the steps above to get everything working again. I’m calling this out since these details may continue to change in future releases.
+    When I first wrote this article, the build process didn’t require any additional RPMs, and I had to call out `microdnf` as the package manager explicitly (it handles some RPM installs even if you don’t request extra packages). In the current version, the build looks for `microdnf` by default, but awx-ee now includes `dnf`. Because of this, I had to adjust the steps above to get everything working again. I’m calling this out since these details may continue to change in future releases.
 
 When the files are ready, execute the following command:
 
-`ansible-builder build`
+`ansible-builder build -t proxmox-env`
+
+`-t` tags the image that is created.
 
 This is the message I see when running it:
 
 ```bash
 Running command:
-  podman build -f context/Containerfile -t ansible-execution-env:latest context
-Complete! The build context can be found at: /home/pmartin/ansible-builder/context
+  podman build -f context/Containerfile -t promox-env context
+Complete! The build context can be found at: /home/pmartin/ansible-builder/article/context
 ```
 
 After the build process finishes you should have the image available to use.
@@ -127,19 +136,21 @@ $ podman run localhost/proxmox-env ansible-galaxy collection list
 # /usr/share/ansible/collections/ansible_collections
 Collection              Version
 ----------------------- -------
-amazon.aws              6.2.0
-ansible.posix           1.5.4
-ansible.windows         2.0.0
-awx.awx                 22.6.0
-azure.azcollection      1.16.0
-community.general       7.2.1
-community.vmware        3.8.0
-google.cloud            1.2.0
-kubernetes.core         2.4.0
-openstack.cloud         2.1.0
-ovirt.ovirt             3.1.2
-redhatinsights.insights 1.0.8
-theforeman.foreman      3.12.0
+amazon.aws              9.4.0  
+ansible.posix           2.0.0  
+ansible.windows         2.8.0  
+awx.awx                 24.6.1 
+azure.azcollection      3.3.1  
+community.general       11.2.1 
+community.vmware        5.5.0  
+google.cloud            1.5.1  
+kubernetes.core         5.2.0  
+kubevirt.core           2.1.0  
+openstack.cloud         2.4.1  
+ovirt.ovirt             3.2.0  
+redhatinsights.insights 1.3.0  
+theforeman.foreman      5.3.0  
+vmware.vmware           1.11.0 
 ```
 
 For comparison this is a list of the collections that were already in the container we used as a base image.
@@ -150,25 +161,27 @@ $ podman run quay.io/ansible/awx-ee ansible-galaxy collection list
 # /usr/share/ansible/collections/ansible_collections
 Collection              Version
 ----------------------- -------
-amazon.aws              6.2.0
-ansible.posix           1.5.4
-ansible.windows         2.0.0
-awx.awx                 22.6.0
-azure.azcollection      1.16.0
-community.vmware        3.8.0
-google.cloud            1.2.0
-kubernetes.core         2.4.0
-openstack.cloud         2.1.0
-ovirt.ovirt             3.1.2
-redhatinsights.insights 1.0.8
-theforeman.foreman      3.12.0
+amazon.aws              9.4.0  
+ansible.posix           2.0.0  
+ansible.windows         2.8.0  
+awx.awx                 24.6.1 
+azure.azcollection      3.3.1  
+community.vmware        5.5.0  
+google.cloud            1.5.1  
+kubernetes.core         5.2.0  
+kubevirt.core           2.1.0  
+openstack.cloud         2.4.1  
+ovirt.ovirt             3.2.0  
+redhatinsights.insights 1.3.0  
+theforeman.foreman      5.3.0  
+vmware.vmware           1.11.0 
 ```
 
 The base image included a lot of collections already. But for our custom execution environment, it needed the 'community.general' collection, which contains the proxmox module.
 
 We have the collection we need for working with proxmox, now, let's test it. We will be using ansible-navigator to execute the playbook using our execution environment. A future article will go deeper into ansible-navigator.
 
-This is simple playbook we will be running.
+This is the simple playbook we will be running.
 
 ```yaml title="Create vm from list"
 ---
@@ -181,7 +194,7 @@ This is simple playbook we will be running.
       community.general.proxmox_kvm:
         api_user: "{{ api_user }}"
         api_password: "{{ api_password }}"
-        api_host: 10.10.10.175
+        api_host: "{{ api_host }}"
         validate_certs: false
         clone: rh8-tmplt
         name: prox-ee-test
@@ -207,14 +220,14 @@ PLAY RECAP *********************************************************************
 localhost                  : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
-This article isn't about ansible-navigator, but here is what each of the option does.
+This article isn't about ansible-navigator, but here is what each of the option does. (You can find more details about Ansible Navigator [in this post.](ansible_navigator_intro.md))
 
-|||
-|---|---------------|
-|run|runs a playbook|
-|--eei|What execution environment to use|
-|--pp|Pull policy, whether or not to pull the image|
-|-m | Output to stdout like a playbook instead of opening navigator|
+| Option | Description |
+|--------|-------------|
+| run    | Runs a playbook |
+| --eei  | What execution environment to use |
+| --pp   | Pull policy, whether or not to pull the image |
+
 
 After the playbook run if we check proxmox we see our vm.
 
@@ -227,6 +240,7 @@ When we ran the build command with ansible-builder it creates a directory, conte
 ```bash
 context
 ├── _build
+│   ├── bindep.txt
 │   ├── configs
 │   │   └── ansible.cfg
 │   ├── requirements.txt
@@ -237,14 +251,17 @@ context
 │       ├── check_galaxy
 │       ├── entrypoint
 │       ├── install-from-bindep
-│       └── introspect.py
+│       ├── introspect.py
+│       └── pip_install
 └── Containerfile
 
 ```
 
-The ones of note are the two requirement files, they contain what you expect, Python module and collection module lists. We see our ansible.cfg has been copied into the _build directory and a Containerfile that handles the actual creation of the image. I will leave it to you to explore and inspect what items are added.
+Some interesting files are the two requirement files and the bindep.txt - they contain exactly what you'd expect: Python modules, collections list, and system package list. You will also see our `ansible.cfg` has been copied into the `_build` directory along with a generated Containerfile that handles the actual creation of the image. 
 
-Ansible-builder is a tool for creating your own execution environments. By leveraging Ansible-builder's capabilities to bundle dependencies, modules, and plugins, you can ensure consistent and reliable execution of your automation workflows. This article touched on just the tip of things you can do with ansible-builder, be sure to check out the documentation to see more options.
+Take some time to explore these copied and generated files - they reveal how ansible-builder translates your files into a working container image.
+
+Ansible Builder is a tool for creating your own execution environments. By leveraging its capabilities to bundle dependencies, modules, and plugins, you can ensure consistent and reliable execution of your automation workflows. This article scratches the surface of what you can do. Be sure to check out the documentation for more options.
 
 ### References and further reading:
 
@@ -259,3 +276,5 @@ Proxmox:
 
 Ansible Navigator github:  
 <https://github.com/ansible/ansible-navigator>
+
+Ansible Navigator 

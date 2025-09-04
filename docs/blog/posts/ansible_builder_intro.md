@@ -96,8 +96,8 @@ Feel free to put any options in your ansible.cfg that you use in your execution 
 Our execution-environment.yml will put this ansible.cfg in the container image where we specify. 
 We will look more at this later on.
 
-!!! note "Possible gotchas"
-    When I first wrote this article, the build process didn’t require any additional RPMs, and I had to call out microdnf as the package manager explicitly (it handles some RPM installs even if you didn’t request extra packages). In the current version, the build looks for microdnf by default, but awx-ee now includes dnf. Because of this, I had to adjust the steps above to get everything working again. I’m calling this out since these details may continue to change in future releases.
+!!! note "Possible gotchas"
+    When I first wrote this article, the build process didn’t require any additional RPMs, and I had to call out microdnf as the package manager explicitly (it handles some RPM installs even if you don’t request extra packages). In the current version, the build looks for microdnf by default, but awx-ee now includes dnf. Because of this, I had to adjust the steps above to get everything working again. I’m calling this out since these details may continue to change in future releases.
 
 When the files are ready, execute the following command:
 

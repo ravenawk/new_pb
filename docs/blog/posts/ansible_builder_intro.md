@@ -5,7 +5,7 @@ date:
 authors:
   - pat
 categories:
-  - Tutorial
+  - QuickStart
 tags:
   - ansible
 ---
@@ -277,4 +277,4 @@ Proxmox:
 Ansible Navigator github:  
 <https://github.com/ansible/ansible-navigator>
 
-Ansible Navigator 
+[Ansible Navigator](ansible_navigator_intro.md)

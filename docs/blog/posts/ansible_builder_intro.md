@@ -59,17 +59,24 @@ dependencies:
   python:
     - proxmoxer
     - requests
+  system:
+    - gcc
+    - python3-devel
+    - libxml2-devel
 
 additional_build_files:
-    - src: ansible.cfg
-      dest: configs
+  - src: ansible.cfg
+    dest: configs
 
 additional_build_steps:
   prepend_final:
     - ADD _build/configs/ansible.cfg /etc/ansible/ansible.cfg
+
+options:
+  package_manager_path: /usr/bin/dnf
 ```
 
-The above execution-environment.yml has all the Ansible and Python requirements in line. You can also specify them as separate files, such as requirements.yml (Ansible) and requirements.txt (Python).
+The above execution-environment.yml has all the Ansible, Python, and system requirements in line. You can also specify them as separate files, such as requirements.yml (Ansible) and requirements.txt (Python).
 
 ```yaml title="Using seperate files"
 --snip--
@@ -80,6 +87,7 @@ dependencies:
     package_pip: ansible-runner
   galaxy: requirements.yml
   python: requirements.txt
+  system: bindep.txt
 --snip--
 ```
 
@@ -88,7 +96,10 @@ Feel free to put any options in your ansible.cfg that you use in your execution 
 Our execution-environment.yml will put this ansible.cfg in the container image where we specify. 
 We will look more at this later on.
 
-Once we have all of the files set, we can run:
+!!! note 
+    When I first wrote this article, the build process didn’t require any additional RPMs, and I had to call out microdnf as the package manager explicitly (it handles some RPM installs even if you didn’t request extra packages). In the current version, the build looks for microdnf by default, but awx-ee now includes dnf. Because of this, I had to adjust the steps above to get everything working again. I’m calling this out since these details may continue to change in future releases.
+
+When the files are ready, execute the following command:
 
 `ansible-builder build`
 

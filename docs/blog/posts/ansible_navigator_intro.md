@@ -5,78 +5,78 @@ date:
 authors:
   - pat
 categories:
-  - QuickStart
+  - quick-start
 tags:
   - ansible
 ---
 # Ansible Navigator: Beginner's Guide
-The shift from Ansible Tower to the Ansible Automation Platform (AAP) represents a significant evolution in development, notably through the adoption of containerized job execution. Amidst these changes is Ansible Navigator, a new utility that consolidates multiple Ansible tools into one. This first article is just an introduction to Ansible Navigator; additional articles that explain different parts and usage will follow.
+Ansible Navigator is a new way to use familiar Ansible tools.
+Tools like ansible-playbook, ansible-inventory, and ansible-doc are just some examples of what Navigator can do as a comprehensive, all-in-one tool. 
 
 <!-- more -->
+The purpose of Ansible Navigator is to enable running playbooks within execution environments, the same way that Ansible Automation Platform runs jobs inside them. This functionality means you can now develop and test your playbooks in the same environment you would be running in production.
+
+This article gets you started with Navigator - we'll explore more of its features in upcoming posts.
+
+## Prerequisites
+You should have the following installed on your system:
+
+- Either Podman or Docker
+- Python
+- pip
+
+!!! note
+    Red Hat subscribers can install Navigator via RPM packages, but this guide focuses on the pip installation method.
+
 ### Installation
-For Red Hat subscribers, ensure you have the `ansible-automation-platform-2.4-for-rhel-9-x86_64-rpms` repo enabled (adjust the version numbers according to your specific AAP and RHEL versions), then run `sudo dnf install ansible-navigator`.
+We will install Ansible Navigator using `pip`, the Python package manager.
+We will install it in a Python virtual environment to isolate the installation and prevent potential conflicts with system packages. 
 
-For a more general approach, Install Ansible Navigator using pip3 — this requires a container engine (either Docker or Podman) pre-installed on your system.
+Create and activate a virtual environment:
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-Although I use Fedora 39 in this guide, you can adapt the instructions for other operating systems. Fedora has Podman installed on a typical install, which can vary on other OSes. In addition to Podman, we also need to install the `python3-pip` package. As with Podman, other OSes may name the package differently. When those requirements are out of the way, we can install Navigator with the command:
+`pip install ansible-navigator`
+```
 
-`pip3 install ansible-navigator`
-
-### Exploring ansible-navigator
+## Exploring ansible-navigator
 
 With ansible-navigator installed you can run it by typing:
 
 
 ```
-$ ansible-navigator
----------------------------------------------------------------------
+❯ ansible-navigator
+-------------------------------------------------------------------------------------
 Execution environment image and pull policy overview
----------------------------------------------------------------------
-Execution environment image name:     ghcr.io/ansible/creator-ee:v0.20.0
-Execution environment image tag:      v0.20.0
+-------------------------------------------------------------------------------------
+Execution environment image name:     ghcr.io/ansible/community-ansible-dev-tools:latest
+Execution environment image tag:      latest
 Execution environment pull arguments: None
 Execution environment pull policy:    tag
 Execution environment pull needed:    True
----------------------------------------------------------------------
+-------------------------------------------------------------------------------------
 Updating the execution environment
----------------------------------------------------------------------
-Running the command: podman pull ghcr.io/ansible/creator-ee:v0.20.0
-Trying to pull ghcr.io/ansible/creator-ee:v0.20.0...
-Getting image source signatures
-Copying blob 6a4437d12ad5 done   |
-Copying blob 6fe2ec5efede done   |
-Copying blob eaac7334e7ab done   |
-Copying blob 7b05cec1a1b5 done   |
-Copying blob 0afce0612807 done   |
-Copying blob dea7f84d568f done   |
-Copying blob 90e5f6bd07c8 done   |
-Copying blob e194cc6358ad done   |
-Copying blob 322be10184d0 done   |
-Copying blob b61759fbc163 done   |
-Copying blob 39b21c1fa8b3 done   |
-Copying blob 09a131db2ab7 done   |
-Copying blob 807c75530636 done   |
-Copying config 278a94cdb5 done   |
-Writing manifest to image destination
-278a94cdb5159adf04f0da2d8c84a9fb3368fe368627806a5ac38e96810b7d45
+-------------------------------------------------------------------------------------
+Running the command: podman pull ghcr.io/ansible/community-ansible-dev-tools:latest
+[... container download output ...]
 ```
 
-The first time you run it, it will download a creator-ee container as shown above.
+The first time you run it, it will download a community-ansible-dev-tools container as shown above.
 
 Once that't done you will see the following screen:
 ![Ansible Navigator](/assets/images/ansible-navigator.png)
 
 You can see from the list that some tools incorporated into ansible-navigator are ansible-doc, ansible-playbook, and ansible-inventory. For now, let's look at the images option.
 
-Before we do that let's exit out and download the homelab-ee that is an evolution of the execution environment I made in the article, [Ansible Builder]({{< ref "ansible_builder.md" >}} ), by doing a podman pull.
+Before we do that let's exit out and download the homelab-ee that is an evolution of the execution environment I made in the article, [Ansible Builder]( ansible_builder_intro.md ), by doing a podman pull.
 
 Now let's reopen ansible-navigator and go to the images section. You do that by typing a colon followed by the option you want, so in our case `:images`.
 
 ![Images](/assets/images/images.png)
 
-> Note it tells us if the container images we have on our system are usable as execution environments.
 
-We have two container images on our system, as shown above. The default image is the creator-ee; we will look at one way to change that later.
+We have two container images on our system, as shown above. The default image is the creator-ee; we will look at one way to change that later. It also tells us if the container images we have on our system are usable as execution environments.
 
 Let's examine homelab-ee; you do that by pressing the number next to the image name, in our case, 1.
 

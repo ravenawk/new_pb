@@ -5,13 +5,11 @@ date:
 authors:
   - pat
 categories:
-  - QuickStart
+  - quick-start
 tags:
   - ansible
 ---
 # Ansible Builder: A Beginners Guide
-
-## What is Ansible Builder
 
 Ansible Builder enables you to build and customize execution environments, creating reproducible environments tailored to your specific work needs.
 These environments ensure consistent and reproducible execution of playbooks and roles by providing a known environment. 
@@ -20,17 +18,18 @@ These environments ensure consistent and reproducible execution of playbooks and
 Execution environments in Ansible refer to container images that include all the necessary dependencies, modules, and plugins to execute Ansible automation.
 
 ## Prerequisites
-You must have the following installed on your system:
+You should have the following installed on your system:
 
 - Either Podman or Docker
 - Python
 - pip
 
+!!! note
+    Red Hat subscribers can install Builder via RPM packages, but this guide focuses on the pip installation method.
+
 ## Installation
 We will install using `pip`, the Python package manager. 
-We'll install it in a Python virtual environment to isolate the installation and prevent potential conflicts with system packages. 
-(You can alternatively install it from Red Hat repositories if you have a Red Hat subscription.)
-
+We will install it in a Python virtual environment to isolate the installation and prevent potential conflicts with system packages. 
 
 Create and activate a virtual environment:
 ```bash

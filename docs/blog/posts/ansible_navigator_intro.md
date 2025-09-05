@@ -5,7 +5,7 @@ date:
 authors:
   - pat
 categories:
-  - Tools
+  - QuickStart
 tags:
   - ansible
 ---

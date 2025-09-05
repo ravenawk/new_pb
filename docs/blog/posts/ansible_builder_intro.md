@@ -9,26 +9,27 @@ categories:
 tags:
   - ansible
 ---
-# Getting Started with Ansible Builder: Creating Custom Execution Environments
+# Ansible Builder: A Beginners Guide
 
-An execution environment in Ansible refers to a container image that includes all the necessary dependencies, modules, and plugins to execute Ansible automation.
-This ensures consistent and reproducible execution of playbooks and roles by providing an environment with set configurations. 
+## What is Ansible Builder
 
-By creating custom execution environments using Ansible Builder, you can create reproducible environments tailored to the work you need to do.
-Ansible Builder simplifies dependency management by ensuring consistent, predictable outcomes.
+Ansible Builder enables you to build and customize execution environments, creating reproducible environments tailored to your specific work needs.
+These environments ensure consistent and reproducible execution of playbooks and roles by providing a known environment. 
 
 <!-- more -->
+Execution environments in Ansible refer to container images that include all the necessary dependencies, modules, and plugins to execute Ansible automation.
 
-Let's use Ansible Builder to build an execution environment for managing Proxmox servers. Proxmox VE is an open-source virtualization platform similar to VMware vSphere.
+## Prerequisites
+You must have the following installed on your system:
 
-!!! note "Prerequisites"
-    You must have the following installed on your system:
+- Either Podman or Docker
+- Python
+- pip
 
-    - Either Podman or Docker
-    - Python
-    - pip
-
-We will install using `pip`, the Python package manager. We'll install it in a Python virtual environment to isolate the installation and prevent potential conflicts with system packages. (You can alternatively install it from Red Hat repositories if you have a Red Hat subscription.)
+## Installation
+We will install using `pip`, the Python package manager. 
+We'll install it in a Python virtual environment to isolate the installation and prevent potential conflicts with system packages. 
+(You can alternatively install it from Red Hat repositories if you have a Red Hat subscription.)
 
 
 Create and activate a virtual environment:
@@ -38,6 +39,12 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 `pip install ansible-builder`
 ``` 
+
+
+## Building an Execution Environment for Proxmox
+### Creating the Build Files
+
+Let's use Ansible Builder to build an execution environment for managing Proxmox servers. Proxmox VE is an open-source virtualization platform similar to VMware vSphere.
 
 While you can include various files in your execution environment build, the core file is `execution-environment.yml`.
 
@@ -120,6 +127,7 @@ Running command:
 Complete! The build context can be found at: /home/pmartin/ansible-builder/article/context
 ```
 
+### Verifying the Build
 After the build process finishes you should have the image available to use.
 
 ```bash
@@ -128,7 +136,8 @@ REPOSITORY              TAG         IMAGE ID      CREATED        SIZE
 localhost/proxmox-env   latest      0ce7182e8bab  4 minutes ago  1.58 GB
 ---snip---
 ```
-We can test our execution environment in a number of ways. Let's start by looking at the collections in it using podman.
+
+Let's look at the collections using podman.
 
 ```bash title="Execution environment collections"
 $ podman run localhost/proxmox-env ansible-galaxy collection list
@@ -179,6 +188,7 @@ vmware.vmware           1.11.0
 
 The base image included a lot of collections already. But for our custom execution environment, it needed the 'community.general' collection, which contains the proxmox module.
 
+## Using our Execution Environment
 We have the collection we need for working with proxmox, now, let's test it. We will be using ansible-navigator to execute the playbook using our execution environment. A future article will go deeper into ansible-navigator.
 
 This is the simple playbook we will be running.
@@ -263,7 +273,7 @@ Take some time to explore these copied and generated files - they reveal how ans
 
 Ansible Builder is a tool for creating your own execution environments. By leveraging its capabilities to bundle dependencies, modules, and plugins, you can ensure consistent and reliable execution of your automation workflows. This article scratches the surface of what you can do. Be sure to check out the documentation for more options.
 
-### References and further reading:
+## References and further reading
 
 Ansible Builder github:  
 <https://github.com/ansible/ansible-builder>

@@ -37,7 +37,7 @@ Create and activate a virtual environment:
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-`pip install ansible-navigator`
+pip install ansible-navigator
 ```
 
 ## Exploring ansible-navigator

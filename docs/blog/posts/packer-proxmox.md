@@ -1,25 +1,29 @@
 ---
-title: "Creating a RHEL Template with Packer on Proxmox"
+title: "How to Create a RHEL Template with HashiCorp Packer on Proxmox VE"
 date:
     created: 2023-09-30
 authors:
     - pat
 ---
-HashiCorp's Packer automates the creation of machine images across various platforms. I have recently been learning a bit about Packer, and in this post, I will show an example of using Packer to generate a Red Hat Enterprise Linux (RHEL) template on Proxmox. I still need to learn more of the Packer intricacies, and this article will be pretty high-level, but I hope it helps you at least start using Packer.
+HashiCorp's Packer automates the creation of machine images across various platforms. 
+This allows you to create a "gold image" that you can use with all the tools you want already installed at deployment time. 
 
 <!-- more -->
+I have recently been learning a bit about Packer, and in this post, I will show an example of using Packer to generate a Red Hat Enterprise Linux (RHEL) template on Proxmox. 
+I am still learning the intricacies of Packer, and this article will be pretty high-level, but I hope it helps you at least get started.
 
-### Prerequisites:
 
-- A Proxmox environment set up and running.
-- A RHEL ISO, we will use RHEL8 in this demonstration.
-- Packer installed on your local machine; see references for docs on installing Packer.
+## Prerequisites:
 
-### Step 1: Create the Packer Configuration File
+- A Proxmox environment set up and running
+- A RHEL ISO (we will use RHEL 8 in this article)
+- Packer installed on your local machine (see references for installation docs)
+
+## Step 1: Create the Packer Configuration File
 
 Configuration file named `rhel-template.pkr.hcl`:
 
-```hcl {linenos=true}
+```hcl linenums="1"
 packer {
   required_plugins {
     proxmox = {
@@ -96,24 +100,25 @@ build {
 
 There are four parts of the above config that I want to call out.
 
-- The top section, lines 1-8, is how we load the plugin for proxmox.
-- The following section , lines 10-40, defines the Packer variables. It doesn't assign them; it just defines them—more on assigning later.
-- In the next section, lines 42-68, you define what Packer needs for connection and setting up the template on proxmox. Things like proxmox url, iso file to use, CPU/memory, disk, etc., are all assigned here.
-- The last section, lines 70-72, is the build section, where you can do some cool things like run shell scripts or an Ansible playbook (among other tools) to finish the template setup at the end of the kickstart run. In this example, though, I am just letting the template finish building with no additional configuration steps.
+- The top section (lines 1-8) is how we load the plugin for proxmox
+- The following section (lines 10-40) defines the Packer variables. It doesn't assign them; it just defines them—more on assigning later
+- In the next section (lines 42-68), defines what Packer needs for connection and setting up the template on proxmox. Things like proxmox url, iso file to use, CPU/memory, disk, etc., are all assigned here
+- The last section (lines 70-72) is the build section, where you can add provisioners to customize your template further—things like running shell scripts, Ansible playbooks, or other configuration management tools after the OS installation completes. For this walkthrough, I'm skipping additional provisioning and letting the template build with just the kickstart configuration
 
-### Step 2: Install the Packer Proxmox Plugin
+## Step 2: Install the Packer Proxmox Plugin
 
-With the above configuration file we can do a:
+With the above configuration file we can run:
 
 ```bash
 packer init .
 ```
 
-The `packer init .` command will install the Packer proxmox plugin.
+The `packer init .` command will install the Packer Proxmox plugin.
 
-### Step 3: Set Up a Kickstart Configuration
+## Step 3: Set Up a Kickstart Configuration
 
-The configuration's file boot_command above references a Kickstart file (`ks.cfg`). Create this in a directory named `http`:
+The configuration file's boot_command above references a Kickstart file (`ks.cfg`). 
+Create this in a directory named `http`:
 
 ```bash
 mkdir http
@@ -141,12 +146,13 @@ selinux --enforcing
 @^minimal-environment
 %end
 ```
-Replace `your-rhel-root-password` with your desired password.
+Replace the values with `your-` with your actual values.
 
-### Step 4: Create a vars file
-This file will be assigning values to the variables you set in the first file we created. Here is an example:
+## Step 4: Create a vars file
+This file will assign values to the variables you define in the first configuration file. 
+Here is an example:
 
-### rhel_vars.pkrvars.hcl
+## rhel_vars.pkrvars.hcl
 
 ```hcl
 proxmox_host = your-proxmox-host
@@ -168,17 +174,21 @@ With configurations set, initiate the Packer build:
 packer build -var-file=rhel_vars.pkrvars.hcl .
 ```
 
+Replace the values with `your-` with your actual values.
 Monitor Packer's output. It will create the VM, provision it, and convert it into a Proxmox template.
 
-Once Packer completes, log into the Proxmox web interface. You should see the new RHEL template. Clone this template whenever you need a new RHEL instance.
+Once Packer completes, log into the Proxmox web interface. You should see the new RHEL template. Clone this template whenever you need a new RHEL 8 instance.
 
 ---
 
-With Packer, you can automate the creation of standardized machine images for Proxmox, ensuring that every instance starts from a known configuration.
+With Packer, you can automate the creation of standardized machine images for Proxmox, ensuring consistent, repeatable deployments across your infrastructure.
 
->NOTE: This article is as much for me as anyone else, like most of my articles. I will continue to update this article as I discover new things and refinements for Packer.
+!!! tip "Living Document" 
+    This article is as much for my own reference as it is a tutorial for others. 
+    There are items I didn't touch on and I know that.
+    I'll continue updating it as I discover new Packer techniques and refinements.
 
-### References and further reading:
+## References and further reading:
 
 Packer:
 https://www.packer.io/

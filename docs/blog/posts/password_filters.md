@@ -1,4 +1,5 @@
 ---
+title: "Generate Random Passwords in Ansible: Password vs Random_String Lookups"
 date: 
   created: 2023-09-29
 tags:
@@ -7,10 +8,10 @@ tags:
 authors:
   - pat
 ---
-Ansible has many built-in lookups and filters to simplify tasks. Today, we'll look at the password lookup and the random_string lookup. Both are useful when automating tasks involving generating random strings, like user passwords. Let's compare the two and see why we would want to use one over the other.
-
+Ansible has many built-in lookups and filters to simplify tasks. Today, we'll explore the password lookup and the random_string lookup - both useful for generating random strings like user passwords.
 <!-- more -->
-### The Password Lookup
+
+## The Password Lookup
 The password lookup generates random passwords; no surprise there.
 
 Example of generating a random password:
@@ -66,7 +67,7 @@ Of course, you don't get the seed if you use '/dev/null' as the location. Passin
 
 The password lookup does what it's named for – it generates passwords. But this lookup might be limited if you need more control of the characters you want to use.
 
-### The Random String Lookup
+## The Random String Lookup
 
 Let's look at an example of the random_string password:
 
@@ -77,7 +78,7 @@ Let's look at an example of the random_string password:
     random_value: "{{ lookup('community.general.random_string', 'length=12 chars=ascii_letters,digits') }}"
 
   tasks:
-    - name: print out user_password
+    - name: print out random_value
       debug:
         var: random_value
 ```
@@ -101,19 +102,19 @@ Take the following example:
         var: random_value
 ```
 
-### Weighing the Pros and Cons
+## Weighing the Pros and Cons
 
 When deciding between the password and random_string lookups in Ansible, it's important to understand your needs.
 
-#### Choose password if:
+### Choose password if:
 - Your primary goal is to generate passwords for users or services.
 - You find the auto-save feature valuable.
 - You require less granular control over the generated string's properties.
 
-#### Choose random_string if:
+### Choose random_string if:
 - Control over the string properties is important.
-
 - The need is to generate more than passwords, like unique IDs, tokens, or other random sequences.
+- You don't need the auto-save functionality
 
 ---
 

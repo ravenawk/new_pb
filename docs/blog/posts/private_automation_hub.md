@@ -6,6 +6,7 @@ tags:
   - ansible
 authors:
   - pat
+draft: true
 ---
 Steps to create a collection
 

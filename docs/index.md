@@ -7,8 +7,8 @@ Welcome to my corner of the internet where I document tech experiments, share ha
 
 ## What You'll Find Here
 
-This isn't a blog trying to cover everything - it's a focused collection of real-world guides and solutions I've actually implemented.
-Most content comes from my homelab adventures and production challenges I've wrestled with.
+This blog isn't trying to cover everything - it's a focused collection of real-world guides and solutions I've actually implemented. 
+Most content comes from my homelab adventures and knowledge I'm solidifying through writing.
 
 ### Current Focus Areas
 

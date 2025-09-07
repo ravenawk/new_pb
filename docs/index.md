@@ -14,10 +14,10 @@ Most content comes from my homelab adventures and knowledge I'm solidifying thro
 
 <div class="grid cards" markdown>
 
-- :material-ansible: **[Ansible Automation](ansible/index.md)**
+- :material-ansible: **[Ansible Automation](blog/category/ansible-automation)**
   Ansible with Execution Environments, Navigator, and Collections
 
-- :material-server: **[Infrastructure Tools](infrastructure/index.md)**
+- :material-server: **[Infrastructure Tools](blog/category/infrastructure-tools)**
   Packer, Terraform, Podman, and other tools
 
 - :material-home-assistant: **Homelab Chronicles** *(Coming Soon)*

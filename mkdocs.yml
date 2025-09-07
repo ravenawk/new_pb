@@ -36,6 +36,8 @@ theme:
     - navigation.tabs.sticky
     - navigation.sections
     - navigation.footer
+    - navigation.indexes
+    - content.tabs.links
 
 markdown_extensions:
   - pymdownx.highlight:
@@ -56,14 +58,14 @@ markdown_extensions:
   - attr_list               # Add CSS classes
   - md_in_html              # HTML in Markdown
   - tables                  # Better tables
-  - meta                  # Better tables
+  - meta                    # Better tables
   - toc:
       permalink: true       # Permalinks to headings
 
 plugins:
   - search
   - tags:
-      tags_file: tags.md
+      tags_file: tags/index.md
   - meta
   - blog:
       authors: true
@@ -80,8 +82,8 @@ nav:
   - Welcome: index.md
   - Blog:
     - blog/index.md
-  - Categories: all-categories.md
-  - Tags: tags.md
+  - Tags:
+    - tags/index.md
   - Archives: all-archives.md
   - About: about.md
   - Contact: contact.md

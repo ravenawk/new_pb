@@ -6,6 +6,7 @@ authors:
   - pat
 categories:
   - quick-start
+  - ansible-automation
 tags:
   - ansible
 ---

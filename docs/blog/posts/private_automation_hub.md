@@ -4,6 +4,8 @@ date:
 tags:
   - ansible_collections
   - ansible
+categories:
+  - ansible-automation
 authors:
   - pat
 draft: true

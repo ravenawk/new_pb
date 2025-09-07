@@ -5,6 +5,8 @@ date:
 tags:
   - ansible_lookups
   - ansible
+categories:
+  - ansible-automation
 authors:
   - pat
 ---

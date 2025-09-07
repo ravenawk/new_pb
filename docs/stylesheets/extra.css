@@ -11,3 +11,29 @@
     max-height: 2.5rem;
   }
 }
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if we're on the tags page with a hash parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const tagToHighlight = urlParams.get('h');
+
+    if (tagToHighlight && window.location.pathname.includes('/tags/')) {
+        // Wait a bit for the page to fully load
+        setTimeout(function() {
+            // Find the heading that contains the tag name
+            const headings = document.querySelectorAll('h2, h3');
+            for (let heading of headings) {
+                if (heading.textContent.toLowerCase().includes(tagToHighlight.toLowerCase())) {
+                    heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    heading.style.backgroundColor = '#ffeb3b'; // Highlight the section
+                    setTimeout(() => {
+                        heading.style.backgroundColor = '';
+                    }, 3000);
+                    break;
+                }
+            }
+        }, 500);
+    }
+});
+</script>

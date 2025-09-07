@@ -4,6 +4,10 @@ date:
     created: 2023-09-30
 authors:
     - pat
+tags:
+    - packer
+categories:
+    - infrastructure-tools
 ---
 HashiCorp's Packer automates the creation of machine images across various platforms. 
 This allows you to create a "gold image" that you can use with all the tools you want already installed at deployment time. 

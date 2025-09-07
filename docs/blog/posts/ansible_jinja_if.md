@@ -4,6 +4,7 @@ date:
   updated: 2025-08-30
 categories:
   - quick-bytes
+  - ansible-automation
 tags:
   - ansible
   - jinja

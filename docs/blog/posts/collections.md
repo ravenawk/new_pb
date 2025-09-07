@@ -4,6 +4,8 @@ date:
   updated: 2025-08-23
 tags:
   - ansible
+categories:
+  - ansible-automation
 authors:
   - pat
 ---

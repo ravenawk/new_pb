@@ -3,12 +3,12 @@ title: Welcome
 ---
 # Welcome to Pat's Bytes
 
-Welcome to my corner of the internet where I document tech experiments, share hard-won solutions, and try to save my future self some headaches. Grab a coffee and dive in.
+Welcome to my corner of the internet where I share tutorials, document tech experiments, and try to save my future self some debugging time. Grab a coffee and dive in.
 
 ## What You'll Find Here
 
 This blog isn't trying to cover everything - it's a focused collection of real-world guides and solutions I've actually implemented. 
-Most content comes from my homelab adventures and knowledge I'm solidifying through writing.
+Most content comes from homelab adventures, work challenges, and concepts I'm solidifying through writing.
 
 ### Current Focus Areas
 

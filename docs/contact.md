@@ -4,7 +4,7 @@ I'd love to hear from you!
 
 Whether you spot an error in a post, have a question about something I've written, or just want to share your own homelab adventures, I'd love to hear from you.
 
-<form name="contact" method="POST" data-netlify="true" style="max-width: 600px; margin-top: 2rem;">
+<form name="contact" method="POST" netlify-honeypot="bot-field" data-netlify="true" style="max-width: 600px; margin-top: 2rem;">
   <div style="margin-bottom: 1rem;">
     <label for="name" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Name:</label>
     <input type="text" id="name" name="name" required style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;">
@@ -28,8 +28,8 @@ Whether you spot an error in a post, have a question about something I've writte
     <textarea id="message" name="message" rows="5" required style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; resize: vertical;"></textarea>
   </div>
   <!-- Netlify honeypot for spam protection -->
-  <p style="display: none;">
-    <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+  <p class="hidden">
+    <label>Don't fill this out if you're human: <input name="bot-field" type="text" /></label>
   </p>
   <!-- reCAPTCHA v2 -->
   <div style="margin-bottom: 1rem;">
@@ -39,7 +39,6 @@ Whether you spot an error in a post, have a question about something I've writte
     Send Message
   </button>
 </form>
-
 
 __Response time:__ *I try to respond within a few days, but sometimes the homelab demands immediate attention. 😉*
 

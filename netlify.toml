@@ -3,7 +3,7 @@
   command = "mkdocs build"
 
 [build.environment]
-  PYTHON_VERSION = "3.8"build
+  PYTHON_VERSION = "3.8"
   publish = "site"
   command = "mkdocs build"
 

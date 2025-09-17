@@ -27,9 +27,13 @@ Whether you spot an error in a post, have a question about something I've writte
     <label for="message" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Message:</label>
     <textarea id="message" name="message" rows="5" required style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; resize: vertical;"></textarea>
   </div>
-  <!-- Netlify bot protection -->
-  <div style="display: none;">
-    <input name="bot-field" />
+  <!-- Netlify honeypot for spam protection -->
+  <p style="display: none;">
+    <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+  </p>
+  <!-- reCAPTCHA v2 -->
+  <div style="margin-bottom: 1rem;">
+    <div data-netlify-recaptcha="true"></div>
   </div>
   <button type="submit" style="background: #0066cc; color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 4px; cursor: pointer; font-size: 1rem;">
     Send Message

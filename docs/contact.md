@@ -39,4 +39,4 @@ Whether you spot an error in a post, have a question about something I've writte
 
 __Response time:__ *I try to respond within a few days, but sometimes the homelab demands immediate attention. 😉*
 
-__Privacy note:__ This form is handled by Netlify and only collects what you provide above. No tracking, no nonsense.
+__Privacy note:__ *This form is handled by Netlify and only collects what you provide above. No tracking, no nonsense.*

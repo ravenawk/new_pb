@@ -34,7 +34,7 @@ When I'm not breaking things in the lab or helping clients automate theirs, I'm 
 
 Found something useful? Spotted an error? Have a better way to solve something I wrote about? I'd love to hear from you. The best part of writing in public is learning from the community.
 
-You can reach me through any of the social links at the bottom of the page, or just start a discussion in the comments if I've enabled them on a particular post.
+Head over to the contact page to get in touch!
 
 ---
 

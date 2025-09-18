@@ -29,9 +29,9 @@ Most content comes from homelab adventures, work challenges, and concepts I'm so
 
 We've all been there - you solve a complex problem or setup up a new service, write zero documentation, and six months later you're googling the same issue again. This site is my anti-pattern to that cycle. It's equal parts:
 
-- **Learning in public** - Writing helps me understand things deeply
-- **Personal reference** - My searchable second brain for technical solutions
-- **Giving back** - Maybe my 3am debugging session saves someone else's evening
+- **Learning in public** - Writing helps me understand things better "how did that work again?"
+- **Personal reference** - My searchable record of "how did I get this working again?"
+- **Shared experiments** - Maybe my homelab/tech adventures can help you
 
 ## Back in Action
 After a year-long hiatus, I'm dusting off the blog and migrating from Hugo to MkDocs. Some articles are getting fresh rewrites, others are being retired, and new content is in the pipeline. The rust is coming off slowly but surely.

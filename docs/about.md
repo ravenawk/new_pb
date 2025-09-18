@@ -17,6 +17,7 @@ We've all been there - you solve a tricky problem, feel pretty clever about it, 
 Most of my content focuses on practical infrastructure automation, homelab adventures, and the occasional deep dive into tools I find genuinely useful. I write from a RHEL/Fedora perspective (though I dabble in Ubuntu/Debian), have strong opinions about YAML formatting, and believe documentation should be as reliable as the systems it describes.
 
 Expect:
+
 - Real solutions to real problems I've actually encountered
 - Honest takes on tools and technologies - including when they don't work as advertised
 - Step-by-step guides that include the gotchas and edge cases

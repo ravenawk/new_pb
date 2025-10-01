@@ -1,22 +1,22 @@
 ---
+title: "Ansible Builder: A Beginners Guide"
+description: Learn how to use Ansible Builder to create custom execution environments for your automation projects.
 date: 
   created: 2023-06-30
   updated: 2025-08-26
-authors:
-  - pat
 categories:
   - quick-start
   - ansible-automation
 tags:
   - ansible
 ---
-# Ansible Builder: A Beginners Guide
 
-Ansible Builder enables you to build and customize execution environments, creating reproducible environments tailored to your specific work needs.
-These environments ensure consistent and reproducible execution of playbooks and roles by providing a known environment. 
+In Ansible, an execution environment is a container image that includes all the necessary dependencies, modules, and plugins needed to run automation tasks.
+
+With Ansible Builder, you can build and customize these images, ensuring consistent and reproducible execution of playbooks and roles in a known environment. 
 
 <!-- more -->
-Execution environments in Ansible refer to container images that include all the necessary dependencies, modules, and plugins to execute Ansible automation.
+
 
 ## Prerequisites
 You should have the following installed on your system:

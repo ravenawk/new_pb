@@ -1,26 +1,27 @@
 ---
+title: Reduce Duplicate Ansible Tasks with Jinja Conditional Logic
+description: Use Jinja2 conditionals to reduce duplicate Ansible tasks without sacrificing readability.
 date:
   created: 2023-12-28
   updated: 2025-08-30
+authors:
+  - pat
 categories:
   - quick-bytes
   - ansible-automation
 tags:
   - ansible
   - jinja
-authors:
-  - pat
 ---
-# Reduce Duplicate Ansible Tasks with Jinja Conditional Logic
 
-In general we want to make our playbooks and tasks as simple as possible, but no simpler. 
-But there are times that adding a little complexity actually reduces our work and is still easy to read.
-Let me share an example:
+In general, we want to make our playbooks and tasks as simple as possible - but no simpler. 
+Adding a little complexity at times can actually reduce our work and keep things readable.
+Here's an example:
+<!-- more -->
 
 In the `microsoft.ad.group` Ansible module, there is an option to add users and a different option to remove users. 
 That means you would have to write nearly identical tasks, one to add and one to remove. As shown below:
 
-<!-- more -->
 ```yaml
 ---
 - name: Add user from AD group

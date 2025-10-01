@@ -1,4 +1,5 @@
 ---
+title: Ansible Collections - A Primer
 date: 
   created: 2022-03-11
   updated: 2025-08-23
@@ -9,9 +10,9 @@ categories:
 authors:
   - pat
 ---
-# Ansible Collections - A Primer
 
-Ansible content collections, often called collections, are a way to add content not included in Ansible core. Roles, playbooks, modules, and plugins can be included in a collection, allowing bundling of similar content together.
+Ansible content collections, often referred to simply as collections, enable the addition of content not included in Ansible core. Each collection bundles related roles, playbooks, modules, and plugins together.
+Let's examine how to install and use Ansible collections.
 
 <!-- more -->
 Collections first appeared in Ansible 2.8 as a technical preview. Ansible 2.10 moved most modules from the main Ansible repository to separate collections repositories.

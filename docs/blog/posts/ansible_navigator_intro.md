@@ -1,4 +1,6 @@
 ---
+title: "Ansible Navigator: Beginner's Guide"
+description: Learn how to use Ansible Navigator for running playbooks in execution environments. A beginner-friendly guide to modern Ansible automation.
 date: 
   created: 2023-12-29
   updated: 2025-08-24
@@ -10,11 +12,10 @@ categories:
 tags:
   - ansible
 ---
-# Ansible Navigator: Beginner's Guide
-Ansible Navigator is a new way to use familiar Ansible tools.
-Tools like ansible-playbook, ansible-inventory, and ansible-doc are just some examples of what Navigator can do as a comprehensive, all-in-one tool. 
+Ansible Navigator offers a new way to use familiar Ansible tools within execution environments. With it, you can run playbooks, view inventories, access Ansible documentation, and more. Let's explore some of the basics of Ansible Navigator.
 
 <!-- more -->
+
 The purpose of Ansible Navigator is to enable running playbooks within execution environments, the same way that Ansible Automation Platform runs jobs inside them. This functionality means you can now develop and test your playbooks in the same environment you would be running in production.
 
 This article gets you started with Navigator - we'll explore more of its features in upcoming posts.

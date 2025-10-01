@@ -1,5 +1,6 @@
 ---
 title: "Generate Random Passwords in Ansible: Password vs Random_String Lookups"
+description: Generate secure random passwords in Ansible with password and random_string lookups. Compare methods and see when to use each.
 date: 
   created: 2023-09-29
 tags:

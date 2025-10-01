@@ -1,4 +1,6 @@
 ---
+title: "Ansible Development: A Visual Studio Code-based Environment Setup"
+description: Learn how to create an Ansible development environment in Visual Studio Code with extensions, linting, and debugging support.
 date: 
   created: 2023-06-29
   updated: 2025-08-19
@@ -9,12 +11,11 @@ categories:
 authors:
   - pat
 ---
-# Ansible Development: A Visual Studio Code-based Environment Setup
 
-Although Ansible playbooks are just YAML files that you can edit anywhere, using development tools will improve and speed up your workflow, helping you write more effective automation code.
+Ansible playbooks are just YAML files that you can edit anywhere. Using development tools like Visual Studio Code can improve your workflow, allowing you to write more effective automation code.
+This article will show you how to get started by setting up an Ansible development environment in Visual Studio Code.
 
 <!-- more -->
-This article will show you how to get started by setting up your Ansible development environment in Visual Studio Code.
 
 !!! INFO "Prerequisites"
     To follow along, make sure you have these installed on your system:

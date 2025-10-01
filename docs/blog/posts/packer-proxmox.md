@@ -1,5 +1,6 @@
 ---
-title: "How to Create a RHEL Template with HashiCorp Packer on Proxmox VE"
+title: "How to Create a Template with HashiCorp Packer on Proxmox VE"
+description: Learn how to create a RHEL template on Proxmox VE using HashiCorp Packer. A step-by-step guide to building consistent, reusable VM images. 
 date:
     created: 2023-09-30
 authors:
@@ -9,12 +10,12 @@ tags:
 categories:
     - infrastructure-tools
 ---
-HashiCorp's Packer automates the creation of machine images across various platforms. 
-This allows you to create a "gold image" that you can use with all the tools you want already installed at deployment time. 
+Manually setting up the same VM again and again gets old fast. HashiCorp Packer fixes this by automating the creation of reusable, templated “gold images”. 
+In this post, we’ll walk through how to build a template on Proxmox VE.
 
 <!-- more -->
-I have recently been learning a bit about Packer, and in this post, I will show an example of using Packer to generate a Red Hat Enterprise Linux (RHEL) template on Proxmox. 
-I am still learning the intricacies of Packer, and this article will be pretty high-level, but I hope it helps you at least get started.
+I've recently been learning Packer, and here I'll share an example of using Packer to generate a Red Hat Enterprise Linux (RHEL) template on Proxmox. 
+While I'm still exploring the intricacies of Packer, this article will remain at a fairly high level. I hope it gives you a solid starting point.
 
 
 ## Prerequisites:
